@@ -1,0 +1,30 @@
+<section>
+  <h2>About Me</h2>
+  {{#if bio}}
+    <p>{{bio}}</p>
+  {{else}}
+    <p>No bio available.</p>
+  {{/if}}
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <ul>
+    {{#each skills}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
+</section>
+
+<section>
+  <h2>Experience</h2>
+  {{#unless experience}}
+    <p>No experience listed yet.</p>
+  {{/unless}}
+  {{#each experience}}
+    <div>
+      <h3>{{this.role}} at {{this.company}}</h3>
+      <p>{{this.duration}}</p>
+    </div>
+  {{/each}} 
+</section>
