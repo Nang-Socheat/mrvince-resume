@@ -1,4 +1,5 @@
-<section>
+{{!-- About section --}}
+<section id="about">
   <h2>About Me</h2>
   {{#if bio}}
     <p>{{bio}}</p>
@@ -7,24 +8,68 @@
   {{/if}}
 </section>
 
-<section>
+{{!-- Skills section --}}
+<section id="skills">
   <h2>Skills</h2>
-  <ul>
+  <ul class="skills-list">
     {{#each skills}}
       <li>{{this}}</li>
     {{/each}}
   </ul>
 </section>
 
-<section>
+{{!-- Experience section --}}
+<section id="experience">
   <h2>Experience</h2>
   {{#unless experience}}
     <p>No experience listed yet.</p>
   {{/unless}}
   {{#each experience}}
-    <div>
-      <h3>{{this.role}} at {{this.company}}</h3>
-      <p>{{this.duration}}</p>
+    <div class="card">
+      <h3>{{this.role}} <span class="at">at</span> {{this.company}}</h3>
+      <p class="duration">{{this.duration}}</p>
+      {{#if this.description}}
+        <p>{{this.description}}</p>
+      {{/if}}
     </div>
-  {{/each}} 
+  {{/each}}
+</section>
+
+{{!-- Education section — uses {{currentStatus}} custom helper --}}
+<section id="education">
+  <h2>Education</h2>
+  {{#each education}}
+    <div class="card">
+      <h3>{{this.school}}</h3>
+      <p>{{this.degree}}</p>
+      <span class="badge {{#if this.inProgress}}badge-progress{{else}}badge-done{{/if}}">
+        {{currentStatus this.inProgress}}
+      </span>
+    </div>
+  {{/each}}
+</section>
+
+{{!-- Projects section — uses {{joinList}} and nested {{#if}} --}}
+<section id="projects">
+  <h2>Projects</h2>
+  {{#each projects}}
+    <div class="card">
+      <h3>{{this.name}}</h3>
+      <p>{{this.description}}</p>
+      <p class="tech">{{joinList this.tech}}</p>
+      {{#if this.link}}
+        <p><a href="{{this.link}}" class="project-link">View on GitHub &rarr;</a></p>
+      {{/if}}
+    </div>
+  {{/each}}
+</section>
+
+{{!-- Fun Facts section — uses {{uppercase}} custom helper --}}
+<section id="fun-facts">
+  <h2>{{uppercase "fun facts"}}</h2>
+  <ul class="fun-facts">
+    {{#each funFacts}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
 </section>
