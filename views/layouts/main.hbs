@@ -5,14 +5,34 @@
       <meta name="viewport" content="width=device-width,
   initial-scale=1.0">
       <title>{{pageTitle}}</title>
+      <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
+      {{!-- Floating emojis drifting up --}}
+      <div class="floating-emojis" aria-hidden="true">
+        <span class="float-emoji emoji-1">🦇</span>
+        <span class="float-emoji emoji-2">🌙</span>
+        <span class="float-emoji emoji-3">🦇</span>
+        <span class="float-emoji emoji-4">⚡</span>
+        <span class="float-emoji emoji-5">🦇</span>
+        <span class="float-emoji emoji-6">🌙</span>
+        <span class="float-emoji emoji-7">🦇</span>
+        <span class="float-emoji emoji-8">⚡</span>
+      </div>
+
       {{> header}}
+      {{> nav}}
 
       <main>
           {{{body}}}
       </main>
 
       {{> footer}}
+
+      {{!-- Scroll to top on page load/refresh --}}
+      <script>
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.addEventListener('load', function () { window.scrollTo(0, 0); });
+      </script>
   </body>
   </html>
